@@ -85,9 +85,13 @@ router.get('/delete/:id', checkToken, (req, res) => {
 
 
 // Ruta para editar un empleado
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id',checkout, (req, res) => {
   const db = new sqlite3.Database(dbPath);
   const sql = "SELECT * FROM empleados WHERE id = ?";
+  if (req.rolId !== 'Admin') {
+    return res.json({ error: 'No tienes permisos para editar empleados', numero: '099' });
+  }
+
   db.get(sql, [req.params.id], (err, row) => {
     if (err) {
       return console.error(err.message);

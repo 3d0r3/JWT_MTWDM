@@ -46,13 +46,14 @@
                         // Por ejemplo, guardar el token en localStorage y redirigir:
                          localStorage.setItem('token', JSON.stringify(data));
                          window.location.href = '/empleados';
-                    }
+                    }   
+                });                 
                 })
                 .fail(function(data) {
                     $('#responseMessage').text('Error al procesar la solicitud.').css('color', 'red');
                 });
             });
-        });
+        ;
     </script>
 </body>
 </html>
